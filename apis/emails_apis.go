@@ -1,19 +1,15 @@
-package handlers
+package apis
 
 import (
 	"encoding/json"
 	"errors"
 	"github.com/danmaina/logger"
 	"messaging/configs"
+	"messaging/constants"
 	"messaging/models"
 	"net/http"
 	"net/smtp"
 	_ "net/smtp"
-)
-
-const (
-	invalidPayload          = "invalid request payload"
-	InternalProcessingError = "an application error occurred while processing"
 )
 
 type Msg struct {
@@ -29,7 +25,7 @@ func SendEmail(rw http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		logger.ERR("Could Not Unmarshal the JSON Request: ", err)
-		returnResponse(http.StatusBadRequest, errors.New(invalidPayload), nil, rw)
+		returnResponse(http.StatusBadRequest, errors.New(constants.InvalidPayload), nil, rw)
 		return
 	}
 
@@ -39,7 +35,7 @@ func SendEmail(rw http.ResponseWriter, r *http.Request) {
 
 	if erC != nil {
 		logger.ERR("Could Not Fetch Configs: ", erC)
-		returnResponse(http.StatusInternalServerError, errors.New(InternalProcessingError), nil, rw)
+		returnResponse(http.StatusInternalServerError, errors.New(constants.InternalProcessingError), nil, rw)
 		return
 	}
 
@@ -52,7 +48,7 @@ func SendEmail(rw http.ResponseWriter, r *http.Request) {
 
 	if erE != nil {
 		logger.ERR("Could Not Send Email: ", err)
-		returnResponse(http.StatusInternalServerError, errors.New(InternalProcessingError), nil, rw)
+		returnResponse(http.StatusInternalServerError, errors.New(constants.InternalProcessingError), nil, rw)
 		return
 	}
 

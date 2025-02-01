@@ -3,8 +3,8 @@ package main
 import (
 	"github.com/danmaina/logger"
 	"github.com/gorilla/mux"
+	"messaging/apis"
 	"messaging/configs"
-	"messaging/handlers"
 	"net/http"
 )
 
@@ -38,10 +38,10 @@ func main() {
 	emailSubRouter := r.PathPrefix(emailsPrefix).Subrouter()
 
 	//Health Checks intended for use in kubernetes
-	r.HandleFunc(appHealthEndpoint, handlers.GetAppStatus).Methods(get)
+	r.HandleFunc(appHealthEndpoint, apis.GetAppStatus).Methods(get)
 
 	// Send Emails Endpoint
-	emailSubRouter.HandleFunc(sendEndpoint, handlers.SendEmail).Methods(post)
+	emailSubRouter.HandleFunc(sendEndpoint, apis.SendEmail).Methods(post)
 
 	// Initialize server port from configs
 	servePort := ":" + config.ApplicationConfigs.Port

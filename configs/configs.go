@@ -4,6 +4,7 @@ import (
 	"github.com/danmaina/logger"
 	"github.com/go-yaml/yaml"
 	"io"
+	"messaging/constants"
 	"os"
 )
 
@@ -12,7 +13,7 @@ func ReadConfigs() (*Config, error) {
 	logger.DEBUG("Reading Default Config File or Creating Config File if not exists")
 
 	// Fetch/ Create Yaml config file
-	configFile, errFetchFile := os.OpenFile(Path, os.O_RDWR|os.O_CREATE, os.ModePerm)
+	configFile, errFetchFile := os.OpenFile(constants.Path, os.O_RDWR|os.O_CREATE, os.ModePerm)
 
 	var ConfigStruct *Config
 
@@ -44,9 +45,9 @@ func ReadConfigs() (*Config, error) {
 	if ConfigStruct == nil || *ConfigStruct == (Config{}) {
 		logger.ERR("Config File Does Not Contain any information, Loading Default Configs")
 
-		errDecodingDefaultYaml := yaml.Unmarshal([]byte(DefaultConfigs), &ConfigStruct)
+		errDecodingDefaultYaml := yaml.Unmarshal([]byte(constants.DefaultConfigs), &ConfigStruct)
 
-		lenConfigs, errWritingDefaultConfigs := configFile.WriteString(DefaultConfigs)
+		lenConfigs, errWritingDefaultConfigs := configFile.WriteString(constants.DefaultConfigs)
 
 		if errWritingDefaultConfigs != nil {
 			logger.ERR("Could not write default configs to config file")
