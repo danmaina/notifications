@@ -1,3 +1,5 @@
+github.com/danmaina/HttpResponse v0.0.0-20190720163938-f10d368f1a7a h1:Ub3MbMvO/oWkQl0yb07+p5Y+76XuFSJe/Jc9ookp9vE=
+github.com/danmaina/HttpResponse v0.0.0-20190720163938-f10d368f1a7a/go.mod h1:YGauY/aiGVa32ZCR2bOnB+51gD27cdy+YDp7kerPmFg=
 github.com/danmaina/logger v1.0.6 h1:u8NDiyO5ErhJkGlF1XNsJajKEUKY0eknXub90gZ8JAQ=
 github.com/danmaina/logger v1.0.6/go.mod h1:d18c4j5NhSwVTetZIybgvB7w8pOePr+vsZT4vPWEBjA=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
