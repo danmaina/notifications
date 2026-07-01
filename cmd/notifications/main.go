@@ -5,7 +5,7 @@ import (
 	"github.com/danmaina/logger"
 	"messaging/internal/api"
 	"messaging/internal/configs"
-	"github.com/danmaina/infra/v2"
+	"github.com/danmaina/infra/v2/rabbitmq"
 	"messaging/internal/mailer"
 	"net/http"
 	"os"
@@ -38,7 +38,7 @@ func main() {
 	// Start RabbitMQ Consumer in a goroutine
 	go func() {
 		logger.INFO("Starting RabbitMQ Consumer...")
-		rabbitConsumer := &infra.RabbitMQConsumer{
+		rabbitConsumer := &rabbitmq.RabbitMQConsumer{
 			URL:       config.RabbitMQ.URL,
 			QueueName: "NOTIFICATIONS",
 			Handler: func(body []byte) error {
